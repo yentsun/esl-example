@@ -1,0 +1,22 @@
+{
+  "name": "esl-example",
+  "version": "1.0.0",
+  "description": "An Electronic Shelve Label solution example with Firmata",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yentsun/esl-example.git"
+  },
+  "keywords": [
+    "esl"
+  ],
+  "author": "Max Korinets",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yentsun/esl-example/issues"
+  },
+  "homepage": "https://github.com/yentsun/esl-example#readme"
+}
