@@ -2,9 +2,9 @@
   "name": "esl-example",
   "version": "1.0.0",
   "description": "An Electronic Shelve Label solution example with Firmata",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/yentsun/esl-example/issues"
   },
-  "homepage": "https://github.com/yentsun/esl-example#readme"
+  "homepage": "https://github.com/yentsun/esl-example#readme",
+  "dependencies": {
+    "amazon-product-api": "^0.4.4",
+    "fixer-io-node": "^1.0.2",
+    "infinite-loop": "^0.2.2"
+  }
 }
