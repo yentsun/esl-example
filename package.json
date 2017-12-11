@@ -4,7 +4,7 @@
   "description": "An Electronic Shelve Label solution example with Firmata",
   "main": "main.js",
   "scripts": {
-    "start": "npm i && node main.js"
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
