@@ -12,7 +12,7 @@ const mainLoop = new InfiniteLoop();
 
 const amazonEchoLabel = new five.Board({
     port: new EtherPortClient({
-        host: '192.168.0.108', // IP address of the ESP
+        host: '192.168.0.107', // IP address of the ESP
         port: 3030
     }),
     timeout: 1e5,
