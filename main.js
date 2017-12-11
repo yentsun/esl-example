@@ -20,7 +20,7 @@ const amazonEchoLabel = new five.Board({
 });
 
 
-async function fetchPrice(client, lcd) {
+async function displayPrice(client, lcd) {
 
     try {
         console.log('requesting product price...');
@@ -50,6 +50,6 @@ amazonEchoLabel.on('ready', () => {
     const lcd = new five.LCD({
         controller: "PCF8574AT"
     });
-    fetchPrice(client, lcd);
-    mainLoop.add(fetchPrice, client, lcd).setInterval(INTERVAL).run();
+    displayPrice(client, lcd);
+    mainLoop.add(displayPrice, client, lcd).setInterval(INTERVAL).run();
 });
