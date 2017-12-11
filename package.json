@@ -21,7 +21,9 @@
   "homepage": "https://github.com/yentsun/esl-example#readme",
   "dependencies": {
     "amazon-product-api": "^0.4.4",
+    "etherport-client": "^0.1.3",
     "fixer-io-node": "^1.0.2",
-    "infinite-loop": "^0.2.2"
+    "infinite-loop": "^0.2.2",
+    "johnny-five": "^0.11.7"
   }
 }

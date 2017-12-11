@@ -1,14 +1,26 @@
 const amazon = require('amazon-product-api');
 const InfiniteLoop = require('infinite-loop');
 const fixer = require('fixer-io-node');
+const five = require('johnny-five');
+const EtherPortClient = require('etherport-client').EtherPortClient;
 
 
-const {AWS_ID: awsId, AWS_SECRET: awsSecret, AWS_TAG: awsTag, interval=10000} = process.env;
+const {AWS_ID: awsId, AWS_SECRET: awsSecret, AWS_TAG: awsTag, INTERVAL=1000*60*60} = process.env;
 
 const client = amazon.createClient({awsId, awsSecret, awsTag});
-const loop = new InfiniteLoop();
+const mainLoop = new InfiniteLoop();
 
-async function fetchPrice(client) {
+const amazonEchoLabel = new five.Board({
+    port: new EtherPortClient({
+        host: '192.168.0.108', // IP address of the ESP
+        port: 3030
+    }),
+    timeout: 1e5,
+    repl: false
+});
+
+
+async function fetchPrice(client, lcd) {
 
     try {
         console.log('requesting product price...');
@@ -17,16 +29,27 @@ async function fetchPrice(client) {
             itemId: 'B01DFKC2SO',
             responseGroup: 'Offers'
         });
-        const USD = Number(results[0].OfferSummary[0].LowestNewPrice[0].Amount[0]) / 100;
-        console.log(`lowest new price is $${USD}`);
-        const {rates: {JPY}} = await fixer.base('USD');
-        console.log('JPY price is', Number.parseInt(USD * JPY));
+        const USDPrice = Number(results[0].OfferSummary[0].LowestNewPrice[0].Amount[0]) / 100;
+        console.log(`lowest new price is $${USDPrice}`);
+        const {rates: {EUR}} = await fixer.base('USD');
+        const EURPrice = Number.parseInt(USDPrice * EUR);
+        lcd
+            .cursor(0, 0)
+            .print('Alexa Echo Dot 2')
+            .cursor(1, 0)
+            .print(`$${USDPrice}`)
+            .cursor(1, 6)
+            .print(` |   EUR${EURPrice}    `);
     } catch (error) {
         throw error;
     }
 }
 
-loop
-    .add(fetchPrice, client)
-    .setInterval(interval)
-    .run();
+amazonEchoLabel.on('ready', () => {
+    console.log('Amazon Echo label ready');
+    const lcd = new five.LCD({
+        controller: "PCF8574AT"
+    });
+    fetchPrice(client, lcd);
+    mainLoop.add(fetchPrice, client, lcd).setInterval(INTERVAL).run();
+});
