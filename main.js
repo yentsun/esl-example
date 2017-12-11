@@ -31,7 +31,7 @@ async function fetchPrice(client, lcd) {
         });
         const USDPrice = Number(results[0].OfferSummary[0].LowestNewPrice[0].Amount[0]) / 100;
         console.log(`lowest new price is $${USDPrice}`);
-        const {rates: {EUR}} = await fixer.base('USD');
+        const {rates: {EUR}} = await fixer.base('USD');  // we fetch and display EUR price for this cluster
         const EURPrice = Number.parseInt(USDPrice * EUR);
         lcd
             .cursor(0, 0)
