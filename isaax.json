@@ -1,0 +1,13 @@
+{
+  "name": "esl-example",
+  "version": "1.0.0",
+  "description": "An Electronic Shelve Label solution example with Firmata",
+  "main": "main.js",
+  "author": "Max Korinets",
+  "license": "MIT",
+  "language":"javascript",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependency": null
+}
