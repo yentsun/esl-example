@@ -3,7 +3,7 @@ const InfiniteLoop = require('infinite-loop');
 const fixer = require('fixer-io-node');
 
 
-const {awsId, awsSecret, awsTag, interval=5000} = process.env;
+const {AWS_ID: awsId, AWS_SECRET: awsSecret, AWS_TAG: awsTag, interval=10000} = process.env;
 
 const client = amazon.createClient({awsId, awsSecret, awsTag});
 const loop = new InfiniteLoop();
@@ -14,7 +14,7 @@ async function fetchPrice(client) {
         console.log('requesting product price...');
         const results = await client.itemLookup({
             idType: 'ASIN',
-            itemId: 'B075PRXBH2',
+            itemId: 'B01DFKC2SO',
             responseGroup: 'Offers'
         });
         const USD = Number(results[0].OfferSummary[0].LowestNewPrice[0].Amount[0]) / 100;
