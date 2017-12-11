@@ -31,15 +31,15 @@ async function fetchPrice(client, lcd) {
         });
         const USDPrice = Number(results[0].OfferSummary[0].LowestNewPrice[0].Amount[0]) / 100;
         console.log(`lowest new price is $${USDPrice}`);
-        const {rates: {EUR}} = await fixer.base('USD');  // we fetch and display EUR price for this cluster
-        const EURPrice = Number.parseInt(USDPrice * EUR);
+        const {rates: {JPY}} = await fixer.base('USD');  // we fetch and display JPY price for this cluster
+        const JPYPrice = Number.parseInt(USDPrice * JPY);
         lcd
             .cursor(0, 0)
             .print('Alexa Echo Dot 2')
             .cursor(1, 0)
             .print(`$${USDPrice}`)
             .cursor(1, 6)
-            .print(` |   EUR${EURPrice}    `);
+            .print(` | JPY${JPYPrice}    `);
     } catch (error) {
         throw error;
     }
