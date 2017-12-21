@@ -20,8 +20,8 @@ module.exports = async function (itemId, lcd) {
         const {rates: {JPY}} = await fixer.base('USD');  // we fetch and display JPY price for this cluster
         const JPYPrice = Number.parseInt(USDPrice * JPY);
         lcd
-        .cursor(0, 0).print(title)
-        .cursor(1, 0).print(`$${USDPrice} | JPY${JPYPrice}    `);
+            .cursor(0, 0).print(title)
+            .cursor(1, 0).print(`$${USDPrice} | JPY${JPYPrice}    `);
         console.log(`${itemId}: label updated`);
 
     } catch (error) {

@@ -25,8 +25,8 @@ labels.on('ready', function () {
     boards.each(async (board) => {
         const lcd = new five.LCD({controller: "PCF8574AT", board});
         console.log(`${board.id}: label display ready`);
-        await requestAndDisplay(board.id, lcd);
+        await requestAndDisplay(board.id, lcd);  // initial display
         const loop = new InfiniteLoop();
-        loop.add(requestAndDisplay, board.id, lcd).setInterval(Number(INTERVAL)).run();
+        loop.add(requestAndDisplay, board.id, lcd).setInterval(Number(INTERVAL)).run(); // looped update
     });
 });
