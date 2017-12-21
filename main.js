@@ -20,11 +20,11 @@ Object.keys(MAP).map((host) => {
 const labels = new five.Boards(boards);
 
 labels.on('ready', function () {
-    console.log('boards ready');
+    console.log('labels ready');
     const boards = this;
     boards.each(async (board) => {
         const lcd = new five.LCD({controller: "PCF8574AT", board});
-        console.log(`${board.id}: label display ready`);
+        console.log(`${board.id}: label lcd ready`);
         await requestAndDisplay(board.id, lcd);  // initial display
         const loop = new InfiniteLoop();
         loop.add(requestAndDisplay, board.id, lcd).setInterval(Number(INTERVAL)).run(); // looped update
