@@ -17,11 +17,11 @@ module.exports = async function (itemId, lcd) {
         console.log('done');
         const title = results[0].ItemAttributes[0].Title[0];
         const USDPrice = Number(results[0].OfferSummary[0].LowestNewPrice[0].Amount[0]) / 100;
-        const {rates: {JPY}} = await fixer.base('USD');  // we fetch and display JPY price for this cluster
-        const JPYPrice = Number.parseInt(USDPrice * JPY);
+        const {rates: {EUR}} = await fixer.base('USD');  // we fetch and display EUR price for this cluster
+        const EURPrice = Number.parseInt(USDPrice * EUR);
         lcd
-            .cursor(0, 0).print(title)
-            .cursor(1, 0).print(`$${USDPrice} | JPY${JPYPrice}    `);
+            .home().print(title.substring(0, 16))
+            .cursor(1, 0).print(`$${USDPrice} | EUR${EURPrice}    `);
         console.log(`${itemId}: label updated`);
 
     } catch (error) {
